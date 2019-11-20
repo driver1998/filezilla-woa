@@ -1,0 +1,29 @@
+image: Ubuntu1804
+
+install:
+  sh: |-
+      sudo apt-get update -qq
+      sudo apt install -y build-essential autoconf automake pkg-config
+
+before_build:
+  ps: |-
+      curl https://github.com/mstorsjo/llvm-mingw/releases/download/20190920/llvm-mingw-20190920-ubuntu-16.04.tar.xz -o llvm-mingw.tar.xz
+      tar -xJf llvm-mingw.tar.xz
+
+      curl https://gmplib.org/download/gmp/gmp-6.1.2.tar.lz -o gmp.tar.lz
+      tar --lzip -xf gmp.tar.lz
+
+      curl https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.10.tar.xz -o gnutls.tar.xz
+      tar -xJf gnutls.tar.xz
+
+      curl https://ftp.gnu.org/gnu/nettle/nettle-3.5.tar.gz -o nettle.tar.gz
+      tar -xzf nettle.tar.gz
+
+      curl https://www.sqlite.org/2019/sqlite-autoconf-3290000.tar.gz -o sqlite.tar.gz
+      tar -xzf sqlite.tar.gz
+
+      curl https://github.com/wxWidgets/wxWidgets/releases/download/v3.1.2/wxWidgets-3.1.2.tar.bz2 -o wxwidgets.tar.bz2
+      tar -xjf wxwidgets.tar.bz2
+
+build_script:
+  sh: ./build.sh

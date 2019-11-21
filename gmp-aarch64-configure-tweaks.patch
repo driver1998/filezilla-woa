@@ -1,0 +1,62 @@
+
+# HG changeset patch
+# User Niels Möller <nisse@lysator.liu.se>
+# Date 1524424949 -7200
+# Node ID ca5a00a4037c11f08f92c37cb76451c9ede84a1e
+# Parent  6e5b01dd940ffaa2913905dfa4af8c753ef235f7
+Configure tweaks for windows on aarch64.
+
+# diff -r 6e5b01dd940f -r ca5a00a4037c ChangeLog
+# --- a/ChangeLog	Wed Apr 18 23:28:26 2018 +0200
+# +++ b/ChangeLog	Sun Apr 22 21:22:29 2018 +0200
+# @@ -1,3 +1,13 @@
+# +2018-04-22  Niels Möller  <nisse@lysator.liu.se>
+# +
+# +	From Martin Storsjö:
+# +	* configure.ac (aarch64): Just as on windows/x86_64, "long" still
+# +	is 32 bit on aarch64. To distinguish between 32-bit and 64-bit
+# +	ABI, test sizeof(void*) instead of sizeof(long). Use long long for
+# +	mp_limb_t for mingw targets.
+# +	* acinclude.m4 (GMP_C_TEST_SIZEOF): Allow '*' in the type name,
+# +	e.g., void*.
+# +
+#  2018-04-18  Marc Glisse  <marc.glisse@inria.fr>
+ 
+#  	* mpq/clear.c: Handle lazy numerator.
+diff -r 6e5b01dd940f -r ca5a00a4037c acinclude.m4
+--- a/acinclude.m4	Wed Apr 18 23:28:26 2018 +0200
++++ b/acinclude.m4	Sun Apr 22 21:22:29 2018 +0200
+@@ -907,8 +907,8 @@
+ 
+ AC_DEFUN([GMP_C_TEST_SIZEOF],
+ [echo "configure: testlist $2" >&AC_FD_CC
+-[gmp_sizeof_type=`echo "$2" | sed 's/sizeof-\([a-z]*\).*/\1/'`]
+-[gmp_sizeof_want=`echo "$2" | sed 's/sizeof-[a-z]*-\([0-9]*\).*/\1/'`]
++[gmp_sizeof_type=`echo "$2" | sed 's/sizeof-\([a-z\*]*\).*/\1/'`]
++[gmp_sizeof_want=`echo "$2" | sed 's/sizeof-[a-z\*]*-\([0-9]*\).*/\1/'`]
+ AC_MSG_CHECKING([compiler $1 has sizeof($gmp_sizeof_type)==$gmp_sizeof_want])
+ cat >conftest.c <<EOF
+ [int
+diff -r 6e5b01dd940f -r ca5a00a4037c configure.ac
+--- a/configure.ac	Wed Apr 18 23:28:26 2018 +0200
++++ b/configure.ac	Sun Apr 22 21:22:29 2018 +0200
+@@ -602,8 +602,8 @@
+     CALLING_CONVENTIONS_OBJS='arm32call.lo arm32check.lo'
+     CALLING_CONVENTIONS_OBJS_64=""
+     cclist_64="gcc cc"
+-    any_32_testlist="sizeof-long-4"
+-    any_64_testlist="sizeof-long-8"
++    any_32_testlist="sizeof-void*-4"
++    any_64_testlist="sizeof-void*-8"
+ 
+     # This is needed for clang, which is not content with flags like -mfpu=neon
+     # alone.
+@@ -612,6 +612,8 @@
+         gcc_cflags_fpmode="-mfloat-abi=softfp" ;;
+       *-*-*eabihf)
+         gcc_cflags_fpmode="-mfloat-abi=hard" ;;
++      *-*-mingw*)
++        limb_64=longlong ;;
+     esac
+ 
+     # FIXME: We make mandatory compiler options optional here.  We should

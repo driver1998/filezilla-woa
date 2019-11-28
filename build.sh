@@ -7,7 +7,7 @@ export MINGW_ROOT=$PWD/$(find llvm-mingw* -type d | head -n 1)
 export PATH=$PATH:$MINGW_ROOT/bin
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$PREFIX/lib/pkgconfig
 
-export CFLAGS="-Wno-unused-function -Wno-unused-lambda-capture -Wno-unused-variable -Wno-ignored-attributes -Wno-inconsistent-missing-override -Wno-inconsistent-dllimport"
+export CFLAGS="-Wno-unused-function -Wno-unused-lambda-capture -Wno-unused-variable -Wno-ignored-attributes -Wno-inconsistent-missing-override -Wno-inconsistent-dllimport -O2"
 export CXXFLAGS=$CFLAGS
 
 echo Building for $HOST

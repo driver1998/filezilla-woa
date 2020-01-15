@@ -86,6 +86,7 @@ popd
 
 ./configure --prefix=$PREFIX --host=$HOST --with-wx-config=$PREFIX/bin/wx-config || exit 1
 make -j $(nproc) || exit 1
+make install     || exit 1
 
 $HOST-strip src/interface/.libs/filezilla.exe \
             src/putty/.libs/fzsftp.exe \
@@ -98,7 +99,7 @@ pushd data
 sh makezip.sh $PREFIX
 mv FileZilla.zip ../../
 
-if [ $ARCH != "armv7"]
+if [ $ARCH != "armv7" ]
 then
   wine "../../nsis/makensis.exe" install.nsi
   mv FileZilla_3_setup.exe ../../

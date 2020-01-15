@@ -96,6 +96,11 @@ $HOST-strip src/interface/.libs/filezilla.exe \
 
 pushd data
 sh makezip.sh $PREFIX
-wine "$HOME/.wine/drive_c/Program Files/NSIS/makensis.exe" install.nsi
-mv FileZilla.zip FileZilla_3_setup.exe ../../
+mv FileZilla.zip ../../
+
+if [ $ARCH != "armv7"]
+then
+  wine "$HOME/.wine/drive_c/Program Files/NSIS/makensis.exe" install.nsi
+  mv FileZilla_3_setup.exe ../../
+fi
 popd

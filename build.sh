@@ -86,16 +86,15 @@ popd
 
 ./configure --prefix=$PREFIX --host=$HOST --with-wx-config=$PREFIX/bin/wx-config || exit 1
 make -j $(nproc) || exit 1
-make install     || exit 1
 
-$HOST-strip src/interface\filezilla.exe \
+$HOST-strip src/interface/filezilla.exe \
             src/putty/fzsftp.exe \
             src/putty/fzputtygen.exe \
-            src/fzshellext/32/libfzshellext-0.dll \
-            src/fzshellext/64/libfzshellext-0.dll \
+            src/fzshellext/32/.libs/libfzshellext-0.dll \
+            src/fzshellext/64/.libs/libfzshellext-0.dll \
             data/dlls/*.dll
 
 pushd data
-./makezip.sh
+./makezip.sh $PREFIX
 mv FileZilla.zip ../../
 popd

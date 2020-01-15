@@ -40,11 +40,11 @@ build_script:
 
 after_build:
   ps: |-
-      mv FileZilla.zip filezilla-$ARCH-$APPVEYOR_REPO_TAG_NAME.zip
+      mv FileZilla.zip filezilla-$env:ARCH-$env:APPVEYOR_REPO_TAG_NAME.zip
       Get-ChildItem .\filezilla-*.zip | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
-      if ($ARCH -ne "armv7") {
-        mv FileZilla_3_setup.exe filezilla-$ARCH-$APPVEYOR_REPO_TAG_NAME.exe
+      if ($env:ARCH -ne "armv7") {
+        mv FileZilla_3_setup.exe filezilla-$env:ARCH-$env:APPVEYOR_REPO_TAG_NAME.exe
         Get-ChildItem .\filezilla-*.exe | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
       }
 
@@ -52,7 +52,7 @@ deploy:
   - release: $(APPVEYOR_REPO_TAG_NAME)
     description: Filezilla $(APPVEYOR_REPO_TAG_NAME)
     provider: GitHub
-    artifact: /filezilla.*\.zip/
+    artifact: /filezilla.*\.(zip|exe)/
     auth_token:
       secure: H8HAtJ5SrLHk1gW1eYZFcjtekn1rIW7a8GJsNC6Nftcql8wE0seZRtYqMnFoQLnr
     draft: true

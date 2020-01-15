@@ -1,0 +1,13 @@
+diff --git a/src/fzshellext/configure.ac b/src/fzshellext/configure.ac
+index d5a7604..a11fcc0 100644
+--- a/src/fzshellext/configure.ac
++++ b/src/fzshellext/configure.ac
+@@ -46,7 +46,7 @@ AC_MSG_CHECKING([whether the compiler actually targets MinGW])
+ matching=
+ cxx_v=`"$CXX" -v 2>&1`
+ if echo "$cxx_v" | grep -i '^target:.*$' >/dev/null 2>&1; then
+-	if echo "$cxx_v" | grep -i '^target:.*mingw.*$' >/dev/null 2>&1; then
++	if echo "$cxx_v" | grep -i '^target:.*mingw\|windows.*$' >/dev/null 2>&1; then
+ 		matching=1
+ 	fi
+ else

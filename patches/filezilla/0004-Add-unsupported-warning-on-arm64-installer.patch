@@ -1,0 +1,24 @@
+diff --git a/data/install.nsi.in b/data/install.nsi.in
+index 7c1532f..fc7a1e4 100644
+--- a/data/install.nsi.in
++++ b/data/install.nsi.in
+@@ -387,6 +387,19 @@ Function .onInit
+ installonoldwindows:
+   ${EndUnless}
+ 
++  !if "@NSIS_ARM64@" == "1"
++    ${Unless} ${IsNativeARM64}
++      Var SupportedBitness
++      ${If} ${RunningX64}
++        StrCpy $SupportedBitness "(32 or 64bit)"
++      ${Else}
++        StrCpy $SupportedBitness "(32bit)"
++      ${EndIf}
++      ${MessageBox} MB_YESNO|MB_ICONSTOP "Unsupported operating system.$\nThis is the installer for the 64bit ARM version of FileZilla ${VERSION} and does not run on your operating system which is x86 based.$\nPlease download the x86 $SupportedBitness FileZilla installer instead.$\nDo you really want to continue with the installation?" IDNO 'IDYES install64on32'
++      Abort
++    ${EndUnless}
++  !endif
++
+   !if "@NSIS_64BIT@" == "1"
+     ${Unless} ${RunningX64}
+       ${MessageBox} MB_YESNO|MB_ICONSTOP "Unsupported operating system.$\nThis is the installer for the 64bit version of FileZilla ${VERSION} and does not run on your operating system which is only 32bit.$\nPlease download the 32bit FileZilla installer instead.$\nDo you really want to continue with the installation?" IDNO 'IDYES install64on32'

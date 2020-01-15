@@ -1,0 +1,19 @@
+diff --git a/configure.ac b/configure.ac
+index cceb7d8..70884db 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -128,8 +128,13 @@ AC_ARG_ENABLE(shellext, [], \
+ if test "$localesonly" != "yes" && echo $host_os | grep "cygwin\|mingw" > /dev/null 2>&1 && test "$shellext" = "yes"; then
+   cd "$OLD_DIR/src/fzshellext/32" || exit 1
+   "$ac_abs_confdir/src/fzshellext/configure" --prefix="$prefix" --exec-prefix="$exec_prefix" --host=i686-w64-mingw32 || exit 1
++
+   cd "$OLD_DIR/src/fzshellext/64" || exit 1
+-  "$ac_abs_confdir/src/fzshellext/configure" --prefix="$prefix" --exec-prefix="$exec_prefix" --host=x86_64-w64-mingw32 || exit 1
++  if echo $host_cpu | grep "aarch64" > /dev/null 2>&1; then
++    "$ac_abs_confdir/src/fzshellext/configure" --prefix="$prefix" --exec-prefix="$exec_prefix" --host=aarch64-w64-mingw32 || exit 1
++  else
++    "$ac_abs_confdir/src/fzshellext/configure" --prefix="$prefix" --exec-prefix="$exec_prefix" --host=x86_64-w64-mingw32 || exit 1
++  fi
+ else
+   cd "$OLD_DIR/src/fzshellext/64" || exit 1
+   "$ac_abs_confdir/src/fzshellext/configure" --disable-shellext || exit 1

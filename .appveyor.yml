@@ -41,11 +41,11 @@ build_script:
 after_build:
   ps: |-
       mv FileZilla.zip filezilla-$ARCH-$APPVEYOR_REPO_TAG_NAME.zip
-      Push-AppveyorArtifact "FileZilla" -FileName filezilla-$ARCH-$APPVEYOR_REPO_TAG_NAME.exe
+      Get-ChildItem .\filezilla-*.zip | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
 
       if ($ARCH -ne "armv7") {
         mv FileZilla_3_setup.exe filezilla-$ARCH-$APPVEYOR_REPO_TAG_NAME.exe
-        Push-AppveyorArtifact "FileZilla Installer" -FileName filezilla-$ARCH-$APPVEYOR_REPO_TAG_NAME.exe
+        Get-ChildItem .\filezilla-*.exe | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
       }
 
 deploy:

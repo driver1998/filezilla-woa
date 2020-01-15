@@ -79,6 +79,7 @@ popd
 pushd $(find filezilla* -type d | head -n 1)
 for p in ../patches/libtool/*.patch;   do patch -p1 < "$p"; done
 for p in ../patches/filezilla/*.patch; do patch -p1 < "$p"; done
+
 autoconf
 pushd src/fzshellext
 autoconf
@@ -104,4 +105,5 @@ then
   wine "../../nsis/makensis.exe" install.nsi
   mv FileZilla_3_setup.exe ../../
 fi
+popd
 popd

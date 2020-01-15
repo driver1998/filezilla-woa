@@ -31,16 +31,8 @@ install:
       sudo apt-get update -qq
       sudo apt-get install -y wx-common wine-stable
 
-      if [ $ARCH != "armv7" ]
-      then
-        curl -o nsis.exe -L https://prdownloads.sourceforge.net/nsis/nsis-3.05-setup.exe
-        wine nsis.exe /S
-        if [ ! -f "$HOME/.wine/drive_c/Program Files/NSIS/makensis.exe" ]
-        then
-          echo "NSIS failed to install"
-          exit 1
-        fi
-      fi
+      curl -o nsis.exe -L https://prdownloads.sourceforge.net/nsis/nsis-3.05-setup.exe
+      7z x nsis.exe -onsis
       chmod +x build.sh
       
 build_script:

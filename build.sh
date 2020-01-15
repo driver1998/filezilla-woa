@@ -100,7 +100,7 @@ mv FileZilla.zip ../../
 
 if [ $ARCH != "armv7"]
 then
-  wine "$HOME/.wine/drive_c/Program Files/NSIS/makensis.exe" install.nsi
+  wine "../../nsis/makensis.exe" install.nsi
   mv FileZilla_3_setup.exe ../../
 fi
 popd

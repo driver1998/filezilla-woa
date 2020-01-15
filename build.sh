@@ -87,9 +87,9 @@ popd
 ./configure --prefix=$PREFIX --host=$HOST --with-wx-config=$PREFIX/bin/wx-config || exit 1
 make -j $(nproc) || exit 1
 
-$HOST-strip src/interface/filezilla.exe \
-            src/putty/fzsftp.exe \
-            src/putty/fzputtygen.exe \
+$HOST-strip src/interface/.libs/filezilla.exe \
+            src/putty/.libs/fzsftp.exe \
+            src/putty/.libs/fzputtygen.exe \
             src/fzshellext/32/.libs/libfzshellext-0.dll \
             src/fzshellext/64/.libs/libfzshellext-0.dll \
             data/dlls/*.dll

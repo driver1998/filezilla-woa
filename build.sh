@@ -95,6 +95,7 @@ $HOST-strip src/interface/.libs/filezilla.exe \
             data/dlls/*.dll
 
 pushd data
-./makezip.sh $PREFIX
-mv FileZilla.zip ../../
+sh makezip.sh $PREFIX
+wine "$HOME/.wine/drive_c/Program Files/NSIS/makensis.exe" install.nsi
+mv FileZilla.zip FileZilla_3_setup.exe ../../
 popd

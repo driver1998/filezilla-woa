@@ -27,27 +27,39 @@ install:
       tar -xjf libfilezilla.tar.bz2 || exit 1
       curl  -o filezilla.tar.bz2    -L https://download.filezilla-project.org/client/FileZilla_latest_src.tar.bz2
       tar -xjf filezilla.tar.bz2    || exit 1
+
       sudo apt-get update -qq
-      sudo apt-get install -y wx-common p7zip
+      sudo apt-get install -y wx-common wine
+
+      curl  -o nsis.exe -L https://prdownloads.sourceforge.net/nsis/nsis-3.05-setup.exe
+      wine nsis-3.04-setup.exe /S
+      if [ ! -f "$HOME/.wine/drive_c/Program Files/NSIS/makensis.exe" ]
+      then
+        echo "NSIS failed to install"
+        exit 1
+      fi
+
       chmod +x build.sh
       
 build_script:
   sh: ./build.sh
 
 after_build:
-  sh: |-
+  ps: |-
       mv FileZilla.zip filezilla-$ARCH-$APPVEYOR_REPO_TAG_NAME.zip
+      Push-AppveyorArtifact "FileZilla" -FileName filezilla-$ARCH-$APPVEYOR_REPO_TAG_NAME.exe
 
-artifacts:
-  - path: 'filezilla*.zip'
-    name: Filezilla
+      if ($ARCH -eq "aarch64") {
+        mv FileZilla_3_setup.exe filezilla-$ARCH-$APPVEYOR_REPO_TAG_NAME.exe
+        Push-AppveyorArtifact "FileZilla Installer" -FileName filezilla-$ARCH-$APPVEYOR_REPO_TAG_NAME.exe
+      }
 
 deploy:
-  release: $(APPVEYOR_REPO_TAG_NAME)
-  description: Filezilla $(APPVEYOR_REPO_TAG_NAME)
-  provider: GitHub
-  artifact: /filezilla.*\.zip/
-  auth_token:
-    secure: H8HAtJ5SrLHk1gW1eYZFcjtekn1rIW7a8GJsNC6Nftcql8wE0seZRtYqMnFoQLnr
-  draft: true
+  - release: $(APPVEYOR_REPO_TAG_NAME)
+    description: Filezilla $(APPVEYOR_REPO_TAG_NAME)
+    provider: GitHub
+    artifact: /filezilla.*\.zip/
+    auth_token:
+      secure: H8HAtJ5SrLHk1gW1eYZFcjtekn1rIW7a8GJsNC6Nftcql8wE0seZRtYqMnFoQLnr
+    draft: true
 

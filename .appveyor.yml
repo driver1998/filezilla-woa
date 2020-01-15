@@ -1,4 +1,4 @@
-Bimage: Ubuntu1804
+image: Ubuntu1804
 
 skip_non_tags: true
 

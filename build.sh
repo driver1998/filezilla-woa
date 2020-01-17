@@ -4,7 +4,7 @@ PREFIX=$PWD/$HOST
 PREFIX_AUTOMAKE=$PWD/automake
 
 export MINGW_ROOT=$PWD/$(find llvm-mingw* -type d | head -n 1)
-export PATH=$PREFIX_AUTOMAKE/bin:$PATH:$MINGW_ROOT/bin:$PREFIX/bin
+export PATH=$PREFIX_AUTOMAKE/bin:$PATH:$MINGW_ROOT/bin:$PREFIX/bin:$PREFIX/lib:$MINGW_ROOT/$HOST/bin
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$PREFIX/lib/pkgconfig
 
 export CFLAGS="-Wno-unused-function -Wno-unused-lambda-capture -Wno-unused-variable -Wno-ignored-attributes -Wno-inconsistent-missing-override -Wno-inconsistent-dllimport -O2"

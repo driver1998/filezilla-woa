@@ -1,5 +1,36 @@
+From ba00f0ef45c7b78df683f0e041df091e13d0f1d7 Mon Sep 17 00:00:00 2001
+From: GH Cao <driver1998@foxmail.com>
+Date: Thu, 20 Feb 2020 20:27:48 +0800
+Subject: [PATCH 2/3] Enable ARM64 installer
+
+---
+ configure.ac        | 6 ++++++
+ data/install.nsi.in | 7 +++++++
+ 2 files changed, 13 insertions(+)
+
+diff --git a/configure.ac b/configure.ac
+index cceb7d8..30dfb78 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -408,10 +408,16 @@ if test "$buildmain" = "yes"; then
+     makensisscript="yes"
+     if echo $host_cpu | grep "x86_64" > /dev/null 2>&1; then
+       NSIS_64BIT=1
++      NSIS_ARM64=0
++    elif echo $host_cpu | grep "aarch64" > /dev/null 2>&1; then
++      NSIS_64BIT=1
++      NSIS_ARM64=1
+     else
+       NSIS_64BIT=0
++      NSIS_ARM64=0
+     fi
+     AC_SUBST(NSIS_64BIT)
++    AC_SUBST(NSIS_ARM64)
+   else
+     makensisscript="no"
+   fi
 diff --git a/data/install.nsi.in b/data/install.nsi.in
-index 7c1532f..fc7a1e4 100644
+index 7c1532f..64448f0 100644
 --- a/data/install.nsi.in
 +++ b/data/install.nsi.in
 @@ -387,6 +387,13 @@ Function .onInit
@@ -16,3 +47,6 @@ index 7c1532f..fc7a1e4 100644
    !if "@NSIS_64BIT@" == "1"
      ${Unless} ${RunningX64}
        ${MessageBox} MB_YESNO|MB_ICONSTOP "Unsupported operating system.$\nThis is the installer for the 64bit version of FileZilla ${VERSION} and does not run on your operating system which is only 32bit.$\nPlease download the 32bit FileZilla installer instead.$\nDo you really want to continue with the installation?" IDNO 'IDYES install64on32'
+-- 
+2.17.1
+

@@ -23,7 +23,7 @@ install:
       tar -xzf nettle.tar.gz        || exit 1
       curl  -o sqlite.tar.gz        -L https://sqlite.org/2020/sqlite-autoconf-3310100.tar.gz
       tar -xzf sqlite.tar.gz        || exit 1
-      curl  -o libfilezilla.tar.bz2 -L https://download.filezilla-project.org/libfilezilla/libfilezilla-0.20.0.tar.bz2 
+      curl  -o libfilezilla.tar.bz2 -L https://download.filezilla-project.org/libfilezilla/libfilezilla-0.19.3.tar.bz2
       tar -xjf libfilezilla.tar.bz2 || exit 1
       curl  -o filezilla.tar.bz2    -L https://download.filezilla-project.org/client/FileZilla_3.46.3_src.tar.bz2
       tar -xjf filezilla.tar.bz2    || exit 1

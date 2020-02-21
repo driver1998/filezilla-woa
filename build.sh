@@ -47,9 +47,8 @@ popd
 
 # gmp
 pushd $(find gmp* -maxdepth 1 -type d | head -n 1)
-if [ $ARCH == "armv7" ]; then GMP_ASSEMBLY_FLAG="--disable-assembly"; fi
 ./configure --prefix=$PREFIX --host=$HOST --disable-static --enable-shared \
-            --disable-cxx $GMP_ASSEMBLY_FLAG || exit 1
+            --disable-cxx --disable-assembly || exit 1
 make -j $(nproc) || exit 1
 make install     || exit 1
 popd

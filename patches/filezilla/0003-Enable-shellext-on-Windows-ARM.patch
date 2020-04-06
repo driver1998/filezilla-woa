@@ -1,14 +1,14 @@
-From 014c7ced7cab3acb5dab8c7d4123b0ea955745c4 Mon Sep 17 00:00:00 2001
+From 423f73160f597e352947a3afdeb158adae226450 Mon Sep 17 00:00:00 2001
 From: GH Cao <driver1998@foxmail.com>
 Date: Thu, 20 Feb 2020 20:33:05 +0800
-Subject: [PATCH 3/3] Enable shellext on Windows ARM
+Subject: [PATCH 3/4] Enable shellext on Windows ARM
 
 ---
  configure.ac | 13 +++++++++++--
  1 file changed, 11 insertions(+), 2 deletions(-)
 
 diff --git a/configure.ac b/configure.ac
-index 30dfb78..58d92d4 100644
+index 01eb746..4764201 100644
 --- a/configure.ac
 +++ b/configure.ac
 @@ -127,9 +127,18 @@ AC_ARG_ENABLE(shellext, [], \

@@ -1,7 +1,7 @@
-From ba00f0ef45c7b78df683f0e041df091e13d0f1d7 Mon Sep 17 00:00:00 2001
+From 1e7d16d101c95ee0d92834c8f06ed5ec7d04713b Mon Sep 17 00:00:00 2001
 From: GH Cao <driver1998@foxmail.com>
 Date: Thu, 20 Feb 2020 20:27:48 +0800
-Subject: [PATCH 2/3] Enable ARM64 installer
+Subject: [PATCH 2/4] Enable ARM64 installer
 
 ---
  configure.ac        | 6 ++++++
@@ -9,7 +9,7 @@ Subject: [PATCH 2/3] Enable ARM64 installer
  2 files changed, 13 insertions(+)
 
 diff --git a/configure.ac b/configure.ac
-index cceb7d8..30dfb78 100644
+index 77bbe32..01eb746 100644
 --- a/configure.ac
 +++ b/configure.ac
 @@ -408,10 +408,16 @@ if test "$buildmain" = "yes"; then

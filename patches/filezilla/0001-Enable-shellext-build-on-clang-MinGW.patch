@@ -1,7 +1,7 @@
-From 1626606deb838043dcc92e334f59f7e66a5c57e1 Mon Sep 17 00:00:00 2001
+From f885eb983f356aae00d4add2a834f0498a4af145 Mon Sep 17 00:00:00 2001
 From: GH Cao <driver1998@foxmail.com>
 Date: Thu, 20 Feb 2020 20:18:03 +0800
-Subject: [PATCH 1/3] Enable shellext build on clang/MinGW
+Subject: [PATCH 1/4] Enable shellext build on clang/MinGW
 
 ---
  src/fzshellext/configure.ac | 2 +-

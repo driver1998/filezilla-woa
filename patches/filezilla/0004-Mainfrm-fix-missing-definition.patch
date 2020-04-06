@@ -1,0 +1,25 @@
+From c48adc4ed47e3290d78ecd6298bc12afc06ac61a Mon Sep 17 00:00:00 2001
+From: GH Cao <driver1998@foxmail.com>
+Date: Mon, 6 Apr 2020 23:46:37 +0800
+Subject: [PATCH 4/4] Mainfrm: fix missing definition
+
+---
+ src/interface/Mainfrm.h | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/src/interface/Mainfrm.h b/src/interface/Mainfrm.h
+index 0641ff5..a1e1a3c 100644
+--- a/src/interface/Mainfrm.h
++++ b/src/interface/Mainfrm.h
+@@ -1,6 +1,8 @@
+ #ifndef FILEZILLA_INTERFACE_MAINFRM_HEADER
+ #define FILEZILLA_INTERFACE_MAINFRM_HEADER
+ 
++#include <list>
++
+ #include "statusbar.h"
+ #include "engine_context.h"
+ #include "notification.h"
+-- 
+2.17.1
+

@@ -17,7 +17,7 @@ install:
       tar -xJf wxwidgets.tar.xz     || exit 1
       curl  -o gmp.tar.xz           -L https://gmplib.org/download/gmp/gmp-6.2.0.tar.xz
       tar -xJf gmp.tar.xz           || exit 1
-      curl  -o gnutls.tar.xz        -L https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.13.tar.xz
+      curl  -o gnutls.tar.xz        -L https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.14.tar.xz
       tar -xJf gnutls.tar.xz        || exit 1
       curl  -o nettle.tar.gz        -L https://ftp.gnu.org/gnu/nettle/nettle-3.6.tar.gz
       tar -xzf nettle.tar.gz        || exit 1
@@ -25,7 +25,7 @@ install:
       tar -xzf sqlite.tar.gz        || exit 1
       curl  -o libfilezilla.tar.bz2 -L https://download.filezilla-project.org/libfilezilla/libfilezilla-0.22.0.tar.bz2
       tar -xjf libfilezilla.tar.bz2 || exit 1
-      curl  -o filezilla.tar.bz2    -L https://download.filezilla-project.org/client/FileZilla_3.48.0_src.tar.bz2
+      curl  -o filezilla.tar.bz2    -L https://download.filezilla-project.org/client/FileZilla_3.48.1_src.tar.bz2
       tar -xjf filezilla.tar.bz2    || exit 1
 
       sudo apt-get update -qq

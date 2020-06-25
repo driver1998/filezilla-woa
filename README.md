@@ -1,7 +1,7 @@
 # filezilla-woa
-Filezilla for Windows ARM32/ARM64
+Filezilla for Windows ARM32/ARM64, built with LLVM/MinGW toolchain
 
-Please go to [releases](https://github.com/driver1998/filezilla-woa/releases) for up-to-date binaries.
+Please go to [releases](https://github.com/driver1998/filezilla-woa/releases) for the latest binaries.
 
 # Features
 - Native filezilla and fzputty for Windows ARM32 and ARM64 platform

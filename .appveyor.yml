@@ -11,7 +11,7 @@ install:
   - sh: |-
       curl  -o automake.tar.xz      -L https://ftp.gnu.org/gnu/automake/automake-1.16.tar.xz 
       tar -xJf automake.tar.xz      || exit 1
-      curl  -o llvm-mingw.tar.xz    -L https://github.com/mstorsjo/llvm-mingw/releases/download/20191230/llvm-mingw-20191230-ubuntu-16.04.tar.xz
+      curl  -o llvm-mingw.tar.xz    -L https://github.com/mstorsjo/llvm-mingw/releases/download/20200325/llvm-mingw-20200325-ubuntu-16.04.tar.xz
       tar -xJf llvm-mingw.tar.xz    || exit 1
       curl  -o wxwidgets.tar.xz     -L https://github.com/driver1998/wxWidgets-woa/releases/download/v3.0.4/wxwidgets-$ARCH-v3.0.4.tar.xz
       tar -xJf wxwidgets.tar.xz     || exit 1
@@ -23,9 +23,9 @@ install:
       tar -xzf nettle.tar.gz        || exit 1
       curl  -o sqlite.tar.gz        -L https://sqlite.org/2020/sqlite-autoconf-3310100.tar.gz
       tar -xzf sqlite.tar.gz        || exit 1
-      curl  -o libfilezilla.tar.bz2 -L https://download.filezilla-project.org/libfilezilla/libfilezilla-0.22.0.tar.bz2
+      curl  -o libfilezilla.tar.bz2 -L https://download.filezilla-project.org/libfilezilla/libfilezilla-0.23.0.tar.bz2
       tar -xjf libfilezilla.tar.bz2 || exit 1
-      curl  -o filezilla.tar.bz2    -L https://download.filezilla-project.org/client/FileZilla_3.48.1_src.tar.bz2
+      curl  -o filezilla.tar.bz2    -L https://download.filezilla-project.org/client/FileZilla_3.49.0_src.tar.bz2
       tar -xjf filezilla.tar.bz2    || exit 1
 
       sudo apt-get update -qq
